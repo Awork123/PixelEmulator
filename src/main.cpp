@@ -1,16 +1,21 @@
+#include <MsgEmu.h>
 #include <Arduino.h>
 #include "WiFi.h"
 #include "AsyncUDP.h"
 #include <Potentiometer.h>
 #include <Joystick.h>
 
-Joystick Joystick(39, 35, 19);
-//Potentiometer Potentiometer(34);
+Joystick joystick(39, 35, 19);
+MsgEmu message(7000, 7007);
+Potentiometer potentiometer(34);
+
 const char * ssid = "HakunaMatata";
 const char * password = "HoejWork";
 
 void setup() {
   Serial.begin(9600);
+  joystick.message = &message;
+  potentiometer.message = &message;
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
@@ -21,9 +26,7 @@ void setup() {
   }
 }
 
-
 void loop (){
-  Joystick.loop();
-  //Potentiometer.loop();
+  joystick.loop();
+  potentiometer.loop();
 }
-

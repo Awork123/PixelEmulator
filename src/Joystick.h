@@ -1,9 +1,12 @@
-#include <Arduino.h>
-#include <Message.h>
+#ifndef B7BE3D5E_576D_4583_B597_8983169B4E53
+#define B7BE3D5E_576D_4583_B597_8983169B4E53
 
-Message Message(7000, 7007); 
+#include <MsgEmu.h>
+#include <Arduino.h>
+
 class Joystick{   
     public:
+    MsgEmu *message;
     int joyXAxis; 
     int joyYAxis; 
     int buttonPress; 
@@ -21,39 +24,34 @@ class Joystick{
         pinMode(joyYAxis, INPUT);
         this->joyXAxis = joyXAxis;
         this->joyYAxis = joyYAxis;  
-    
         
     }
     void printXHigh (){
     Serial.printf("X_AXIS IS HIGHER AND IS: ");
     Serial.println(xSensorValue);
     preValue1 = xSensorValue;
+    message->MessageToPixel("moveup");
     }
     void printXLow(){
     Serial.printf("X_AXIS IS LOWER AND IS: ");
     Serial.println(xSensorValue);
     preValue1 = xSensorValue;
+    message->MessageToPixel("movedown");
     }
     void printYHigh(){
     Serial.printf("Y_AXIS IS HIGHER AND IS: ");
     Serial.println(ySensorValue);
     preValue2 = ySensorValue;
+    message->MessageToPixel("moveright");
     }
     void printYLow(){
     Serial.printf("Y_AXIS IS LOWER AND IS: ");
     Serial.println(ySensorValue);
     preValue2 = ySensorValue;
-
+    message->MessageToPixel("moveleft");
     }
 
 void loop (){
-/*delay(1000);
-  if(abs(analogRead(joyXAxis)-preValue1 > tolerance || abs(analogRead(joyYAxis)-preValue2) > tolerance)) {
-    Serial.println(map(analogRead(joyXAxis), 0, 4095, -100, 100));
-    Serial.println(map(analogRead(joyYAxis) ,0, 4095, -100, 100));
-  }
-  */
-
 
   ySensorValue = analogRead(joyYAxis);
   xSensorValue = analogRead(joyXAxis);
@@ -66,48 +64,18 @@ void loop (){
     xSensorValue = preValue1;
   }
 
-
-
   if (ySensorValue > (preValue2 + tolerance)) {
-    printYHigh();
-    
+    printYHigh(); 
   } else if (ySensorValue < (preValue2 - tolerance)) {
     printYLow();
-  }
-  else {
+  } else {
     ySensorValue = preValue2;
   } 
 
-
-
-/* 
-    int preValue1 = analogRead(joyYAxis);
-    int preValue2 = analogRead(joyXAxis);
-    delay(3000);
-    Serial.println(preValue1);
-    Serial.println(preValue2);
-  if (abs(analogRead(joyYAxis)-preValue1) > tolerance){
-    if (preValue1 < 500) {
-      Serial.println(map(analogRead(joyYAxis), 0, 4095, -100, 100));
-      preValue1 = analogRead(joyYAxis);
-      Message.sendMsgTopxlEmu("moveleft");
-      
-  }
-  else if (preValue1 > 3500) {
-    Message.sendMsgTopxlEmu("moveright");
-  }
-
-Ø
-    if(abs(analogRead(joyXAxis)-preValue2) > tolerance){
-    // Serial.println(map(analogRead(joyXAxis), 0, 4095, -100, 100));
-    preValue2 = analogRead(joyXAxis); 
-    Message.sendMsgTopxlEmu("moveup");
-  }
-
  if(digitalRead(buttonPress) == LOW){
-   Message.sendMsgTopxlEmu("init 10 10");
-    }
-    */
+   message->MessageToPixel("init 10 10");
+    } 
 }
   
 }; 
+#endif /* B7BE3D5E_576D_4583_B597_8983169B4E53 */
