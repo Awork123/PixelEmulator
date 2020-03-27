@@ -26,6 +26,7 @@ class Joystick{
         this->joyYAxis = joyYAxis;  
         
     }
+    /* FOR TESTING
     void printXHigh (){
     Serial.printf("X_AXIS IS HIGHER AND IS: ");
     Serial.println(xSensorValue);
@@ -50,7 +51,7 @@ class Joystick{
     preValue2 = ySensorValue;
     message->MessageToPixel("moveleft");
     }
-
+*/
 void loop (){
 
   ySensorValue = analogRead(joyYAxis);
