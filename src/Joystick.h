@@ -26,32 +26,31 @@ class Joystick{
         this->joyYAxis = joyYAxis;  
         
     }
-    /* FOR TESTING
     void printXHigh (){
-    Serial.printf("X_AXIS IS HIGHER AND IS: ");
-    Serial.println(xSensorValue);
+    //Serial.printf("X_AXIS IS HIGHER AND IS: ");
+    //Serial.println(xSensorValue);
     preValue1 = xSensorValue;
     message->MessageToPixel("moveup");
     }
     void printXLow(){
-    Serial.printf("X_AXIS IS LOWER AND IS: ");
-    Serial.println(xSensorValue);
+    //Serial.printf("X_AXIS IS LOWER AND IS: ");
+    //Serial.println(xSensorValue);
     preValue1 = xSensorValue;
     message->MessageToPixel("movedown");
     }
     void printYHigh(){
-    Serial.printf("Y_AXIS IS HIGHER AND IS: ");
-    Serial.println(ySensorValue);
+   // Serial.printf("Y_AXIS IS HIGHER AND IS: ");
+    //Serial.println(ySensorValue);
     preValue2 = ySensorValue;
     message->MessageToPixel("moveright");
     }
     void printYLow(){
-    Serial.printf("Y_AXIS IS LOWER AND IS: ");
-    Serial.println(ySensorValue);
+    //Serial.printf("Y_AXIS IS LOWER AND IS: ");
+    //Serial.println(ySensorValue);
     preValue2 = ySensorValue;
     message->MessageToPixel("moveleft");
     }
-*/
+
 void loop (){
 
   ySensorValue = analogRead(joyYAxis);
