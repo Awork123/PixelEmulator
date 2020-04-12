@@ -19,11 +19,11 @@ void setup() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
-  if (WiFi.waitForConnectResult() != WL_CONNECTED) {
+  /* if (WiFi.waitForConnectResult() != WL_CONNECTED) {
     Serial.println("WiFI failed");
     while(1) {
     }
-  }
+  } */ 
 }
 
 void loop (){

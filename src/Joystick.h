@@ -27,26 +27,18 @@ class Joystick{
         
     }
     void printXHigh (){
-    //Serial.printf("X_AXIS IS HIGHER AND IS: ");
-    //Serial.println(xSensorValue);
     preValue1 = xSensorValue;
     message->MessageToPixel("moveup");
     }
     void printXLow(){
-    //Serial.printf("X_AXIS IS LOWER AND IS: ");
-    //Serial.println(xSensorValue);
     preValue1 = xSensorValue;
     message->MessageToPixel("movedown");
     }
     void printYHigh(){
-   // Serial.printf("Y_AXIS IS HIGHER AND IS: ");
-    //Serial.println(ySensorValue);
     preValue2 = ySensorValue;
     message->MessageToPixel("moveright");
     }
     void printYLow(){
-    //Serial.printf("Y_AXIS IS LOWER AND IS: ");
-    //Serial.println(ySensorValue);
     preValue2 = ySensorValue;
     message->MessageToPixel("moveleft");
     }
@@ -56,17 +48,17 @@ void loop (){
   ySensorValue = analogRead(joyYAxis);
   xSensorValue = analogRead(joyXAxis);
   
-  if (xSensorValue > (preValue1 + tolerance)) {
+  if (xSensorValue > (preValue1 + tolerance) && xSensorValue >= 2047) {
     printXHigh();
-  } else if (xSensorValue < (preValue1 - tolerance)) {
+  } else if (xSensorValue < (preValue1 - tolerance) && xSensorValue <= 2047 ) {
     printXLow();
   } else {
     xSensorValue = preValue1;
   }
 
-  if (ySensorValue > (preValue2 + tolerance)) {
+  if (ySensorValue > (preValue2 + tolerance) && ySensorValue >= 2047) {
     printYHigh(); 
-  } else if (ySensorValue < (preValue2 - tolerance)) {
+  } else if (ySensorValue < (preValue2 - tolerance) && ySensorValue <= 2047) {
     printYLow();
   } else {
     ySensorValue = preValue2;
