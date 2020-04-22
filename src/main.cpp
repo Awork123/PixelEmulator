@@ -6,7 +6,7 @@
 #include <Joystick.h>
 
 Joystick joystick(39, 35, 19);
-MsgEmu message(7000, 7007);
+MsgEmu message(4444, 7007);
 Potentiometer potentiometer(34);
 
 const char * ssid = "HakunaMatata";
@@ -27,6 +27,7 @@ void setup() {
 
   if (WiFi.isConnected()) {
     Serial.println("WiFi connected");
+   
   }
 }
 

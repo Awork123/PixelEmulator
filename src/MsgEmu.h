@@ -18,8 +18,8 @@ class MsgEmu {
     }
 
     void MessageToPixel (String msg) {
-    udp.writeTo((const uint8_t*)msg.c_str(), msg.length(), IPAddress(192,168,0,13), port);
-    Serial.println("Sending message");
+    udp.writeTo((const uint8_t*)msg.c_str(), msg.length(), IPAddress(192,168,0,20), port);
+    Serial.println(msg);
     }  
 };
 #endif /* E4E0657A_5F9F_4931_8314_89A06BCA1AB3 */

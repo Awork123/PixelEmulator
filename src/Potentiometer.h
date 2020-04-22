@@ -21,9 +21,9 @@ class Potentiometer{
         void increase() {
             if (speedStage < 9) {
                 speedStage = speedStage +1;
-                message->MessageToPixel("Speed " + speedStage);
-            }
-            else {
+             //   message->MessageToPixel("Speed " + speedStage);
+             message->MessageToPixel("change shape");
+            } else {
 
             }
             preValuePotentio = sensorvalue;
@@ -33,7 +33,8 @@ class Potentiometer{
         void decrease() {
             if (speedStage > 1) {
                 speedStage = speedStage - 1;
-                message->MessageToPixel("Speed " + speedStage);
+              //  message->MessageToPixel("Speed " + speedStage);
+              message->MessageToPixel("change shape");
             }
             else {
 

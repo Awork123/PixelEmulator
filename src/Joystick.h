@@ -6,6 +6,7 @@
 
 class Joystick{   
     public:
+    MsgEmu *message;
     int joyXAxis; 
     int joyYAxis; 
     int buttonPress; 
@@ -36,7 +37,8 @@ class Joystick{
             }
             else {
             }
-          message.MessageToPixel("speed " + speedStage);
+         //------------------------ message->MessageToPixel("speed " + speedStage);
+         message->MessageToPixel("speed up");
     }
 
     void decreaseSpeed() {
@@ -45,20 +47,20 @@ class Joystick{
             }
             else {
             }
-          message.MessageToPixel("speed " + speedStage);
+        //----------------- message->MessageToPixel("speed " + speedStage);
+        message->MessageToPixel("speed down");
     }
 
     /* In our methods for controlling the movement, we send our string to the messageToPixel class, where it's send to the UDP
     We also set the prevalue1 (1 being the synonym for x, in this case) equal to the current xsensorvalue.*/ 
     void printXHigh (){
     preValue1 = xSensorValue;
-    message.MessageToPixel("move up");
+    message->MessageToPixel("move up");
     }
 
     void printXLow(){
     preValue1 = xSensorValue;
-    Serial.println("down!");
-    message.MessageToPixel("move down");
+    message->MessageToPixel("move down");
     
     }
 
@@ -86,7 +88,7 @@ void loop (){
       increaseSpeed();
     }
     else if (map(analogRead(joyXAxis), 0, 4095, -100, 100) < 0) {
-      decreaseSpeed();
+      // decreaseSpeed();
     }
   } 
   else if (xSensorValue < (preValue1 - tolerance)) {
@@ -94,8 +96,8 @@ void loop (){
       printXLow();
       increaseSpeed();
     }
-    else if (map(analogRead(joyXAxis), 0, 4095, -100, 100) > -20 ) {
-      decreaseSpeed();
+    else if (map(analogRead(joyXAxis), 0, 4095, -100, 100) > 0 ) {
+      // decreaseSpeed();
     }
   } 
   else {
@@ -116,6 +118,7 @@ void loop (){
  
  if(digitalRead(buttonPress) == LOW){
    Serial.println("Slam!!");
+   message->MessageToPixel("launch");
     } 
 }
   
