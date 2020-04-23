@@ -5,7 +5,7 @@
 #include <Potentiometer.h>
 #include <Joystick.h>
 
-Joystick joystick(39, 35, 19);
+Joystick joystick(39, 19);
 MsgEmu message(4444, 7007);
 Potentiometer potentiometer(34);
 

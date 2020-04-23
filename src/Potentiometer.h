@@ -8,10 +8,6 @@ class Potentiometer{
     public:
     MsgEmu *message;
     int potentiometerpin;
-    int sensorvalue;
-    int preValuePotentio;
-    int sensitivity = 409;
-    int speedStage = 1;
 
     Potentiometer(int potentiometerpin){
         this->potentiometerpin = potentiometerpin;
@@ -19,42 +15,22 @@ class Potentiometer{
         }
 
         void increase() {
-            if (speedStage < 9) {
-                speedStage = speedStage +1;
-             //   message->MessageToPixel("Speed " + speedStage);
-             message->MessageToPixel("change shape");
-            } else {
-
-            }
-            preValuePotentio = sensorvalue;
-            // Serial.println(speedStage);
+            message->MessageToPixel("move right");
         }
 
         void decrease() {
-            if (speedStage > 1) {
-                speedStage = speedStage - 1;
-              //  message->MessageToPixel("Speed " + speedStage);
-              message->MessageToPixel("change shape");
-            }
-            else {
-
-            }
-            preValuePotentio = sensorvalue;
-            // Serial.println(speedStage);
+            message->MessageToPixel("move left");
     }
 
     void loop() {
-        sensorvalue = analogRead(potentiometerpin);
-
-        if (sensorvalue > preValuePotentio + sensitivity){
+        if (map(analogRead(potentiometerpin), 0, 4095, 0, 10) == 10){
             increase();
+            delay(100);
         }
-        else if (sensorvalue < preValuePotentio-sensitivity) {
+        else if (map(analogRead(potentiometerpin), 0, 4095, 0, 10) == 0) {
             decrease();
-        }
-        else {
-            sensorvalue=preValuePotentio;
+            delay(100);
         }
     }
-};
+}; 
  #endif /* E7954E57_9A81_4AAF_BD3B_2E57789F10F1 */
