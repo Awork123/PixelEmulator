@@ -31,23 +31,11 @@ class Joystick{
     To decrease the speed, we subtracts 1 from the same Speedstage int, if the value is greater than 1.
     This will be elaborated later, by the loop method.
     We choose 9 and 1, as it was the highest and lowest the pixel server would go.*/
-    void increaseSpeed() {
-      if (speedStage < 9) {
-                speedStage = speedStage +1;
-            }
-            else {
-            }
-         //------------------------ message->MessageToPixel("speed " + speedStage);
+    void increaseSpeed() { 
          message->MessageToPixel("speed up");
     }
 
-    void decreaseSpeed() {
-      if (speedStage > 1) {
-                speedStage = speedStage - 1;
-            }
-            else {
-            }
-        //----------------- message->MessageToPixel("speed " + speedStage);
+    void decreaseSpeed() { 
         message->MessageToPixel("speed down");
     }
 
@@ -64,61 +52,46 @@ class Joystick{
     
     }
 
-    /*Sadly, our yaxis on the joystick wasn't functioning correctly, and we therefore commentared it out.
-    /* 
-
-    /* void printYHigh(){
-    preValue2 = ySensorValue;
-    Serial.println("Right!");
-    }
-    void printYLow(){
-    preValue2 = ySensorValue;
-    Serial.println("left!!");
-    } */ 
-
 
 void loop (){
 
   ySensorValue = analogRead(joyYAxis);
   xSensorValue = analogRead(joyXAxis);
-  
+
+  if (map(analogRead(joyXAxis), 0, 4095, -100, 100) == 100){
+    printXHigh();
+    delay(200);
+  }
+
+  if (map(analogRead(joyXAxis), 0, 4095, -100, 100) == -100){
+    printXLow();
+    delay(200);
+  }
   if (xSensorValue > (preValue1 + tolerance)) {
-    if (map(analogRead(joyXAxis), 0, 4095, -100, 100) > 0) {
+    if (map(analogRead(joyXAxis), 0, 4095, 0, 10) > 7) {
       printXHigh();
       increaseSpeed();
     }
-    else if (map(analogRead(joyXAxis), 0, 4095, -100, 100) < 0) {
-      // decreaseSpeed();
+    else if (map(analogRead(joyXAxis), 0, 4095, 0, 10) < 3) {
+      decreaseSpeed();
     }
   } 
   else if (xSensorValue < (preValue1 - tolerance)) {
-    if (map(analogRead(joyXAxis), 0, 4095, -100, 100) < 0 ) {
+    if (map(analogRead(joyXAxis), 0, 4095, 0, 10) < 3 ) {
       printXLow();
       increaseSpeed();
     }
-    else if (map(analogRead(joyXAxis), 0, 4095, -100, 100) > 0 ) {
-      // decreaseSpeed();
+    else if (map(analogRead(joyXAxis), 0, 4095, 0, 10) > 7 ) {
+      decreaseSpeed();
     }
   } 
   else {
     xSensorValue = preValue1;
   }
 
-  /* if (ySensorValue > (preValue2 + tolerance) && map(analogRead(joyYAxis), 0, 4095, -100, 100) > 0) {
-    printYHigh(); 
-  } else if (ySensorValue < (preValue2 - tolerance) && map(analogRead(joyYAxis), 0, 4095, -100, 100) < 0) {
-    printYLow();
-  } 
-  else {
-    ySensorValue = preValue2;
-  } */ 
-
-  /* wewe
-  */ 
- 
  if(digitalRead(buttonPress) == LOW){
-   Serial.println("Slam!!");
    message->MessageToPixel("launch");
+   delay(100);
     } 
 }
   
