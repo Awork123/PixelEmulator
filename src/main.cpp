@@ -12,6 +12,8 @@ Potentiometer potentiometer(34);
 const char * ssid = "HakunaMatata";
 const char * password = "HoejWork";
 
+/* We start our program with connection to our wifi. If a connection is found it prints it is found and 
+sends a message saying 'wifi conncected'*/ 
 void setup() {
   Serial.begin(9600);
   joystick.message = &message;
@@ -27,6 +29,7 @@ void setup() {
 
   if (WiFi.isConnected()) {
     Serial.println("WiFi connected");
+    message.MessageToPixel("Wifi is conncted");
    
   }
 }

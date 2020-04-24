@@ -9,8 +9,6 @@ class MsgEmu {
     int port;
     int udpPort;
     AsyncUDP udp;
-    const char * ssid = "HakunaMatata";
-    const char * password = "HoejWork";
     
     MsgEmu(int port, int udpPort){
         this->port = port;
