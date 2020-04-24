@@ -22,7 +22,7 @@ class Potentiometer{
             message->MessageToPixel("move left");
         }
 
-    /* For our potentiometer, we made it send 'move right'/'move left' if the potentiometer is at one of the ends*/ 
+    /* For our potentiometer, we made it send 'move right'/'move left' if the potentiometer is close to one of the ends*/ 
     void loop() {
         if (map(analogRead(potentiometerpin), 0, 4095, 0, 10) > 8){
             increase();

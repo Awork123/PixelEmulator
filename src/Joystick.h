@@ -1,15 +1,11 @@
-//
 #ifndef B7BE3D5E_576D_4583_B597_8983169B4E53
 #define B7BE3D5E_576D_4583_B597_8983169B4E53
 
 #include <MsgEmu.h>
 #include <Arduino.h>
 
-
 class Joystick{ 
-  //  
     public:
-    //
     MsgEmu *message;
     int joyYAxis; 
     int buttonPress; 
