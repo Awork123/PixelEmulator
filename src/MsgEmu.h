@@ -21,7 +21,7 @@ class MsgEmu {
     /*This is the functions that sends our message. We do this by using the udp.writeto
     We also print the message, for some whitebox testing*/ 
     void MessageToPixel (String msg) {
-    udp.writeTo((const uint8_t*)msg.c_str(), msg.length(), IPAddress(192,168,0,20), port);
+    udp.writeTo((const uint8_t*)msg.c_str(), msg.length(), IPAddress(YOUR IP!), port);
     Serial.println(msg);
     }  
 };
