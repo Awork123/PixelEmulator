@@ -12,8 +12,8 @@ Joystick joystick(39, 19);
 MsgEmu message(4444, 7007);
 Potentiometer potentiometer(34);
 
-const char * ssid = "HakunaMatata";
-const char * password = "HoejWork";
+const char * ssid = "YOUR SSID";
+const char * password = "YOUR PASSWORD";
 
 /* We start our program with connection to our wifi. If a connection is found it prints it is found and 
 sends a message saying 'wifi conncected'. This is both for practical reasons, and for whiteboxtesting */ 
@@ -34,7 +34,6 @@ void setup() {
   if (WiFi.isConnected()) {
     Serial.println("WiFi connected");
     message.MessageToPixel("Wifi is conncted");
-   
   }
 }
 
